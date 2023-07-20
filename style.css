@@ -13,10 +13,13 @@
 
 body {
   height: 100%;
-  background-image: var(--gradient-primary);
+}
+
+main {
   background: url('./images/bg-pattern-desktop.svg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: var(--gradient-secondary);
 }
 
 header {
@@ -25,10 +28,6 @@ header {
 
 header > img {
   height: 1.3rem;
-}
-
-picture > img {
-  width: 100%;
 }
 
 article {
@@ -94,7 +93,20 @@ form button {
   align-self: center;
 }
 
+.desktop-img {
+  display: none;
+}
+
+.mobile-img {
+  display: block;
+  width: 100%;
+}
+
 @media (min-width: 1080px) {
+  body {
+    display: flex;
+  }
+
   main {
     display: flex;
     flex-direction: column;
@@ -105,17 +117,21 @@ form button {
 
   main > header, main > article {
     width: 50%;
-    margin-left: 80px;
+    margin-left: 0px;
   }
 
   header {
     order: 1;
   }
 
+  header > img {
+    height: initial;
+  }
+
   picture {
     order: 3;
-    align-self: center;
-    margin-left: auto;
+    align-self: flex-end;
+    /* margin-left: auto; */
   }
 
   picture > img {
@@ -129,5 +145,36 @@ form button {
 
   article h1 {
     margin: 0;
+    font-size: 5.2rem;
+    font-weight: 400;
+    line-height: 5.2rem;
+  }
+
+  article p {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    margin: 1.4rem 0 3rem 0;
+  }
+
+  form input {
+    font-size: 1rem;
+  }
+
+  form button {
+    padding: 1.1rem 2.4rem;
+  }
+
+  header, article {
+    width: 50%;
+    align-self: center;
+  }
+
+  .desktop-img {
+    display: block;
+    height: 100vh;
+  }
+
+  .mobile-img {
+    display: none;
   }
 }
