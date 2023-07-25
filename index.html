@@ -26,7 +26,10 @@
     <header>
       <img src="./images/logo.svg" alt="Logo">
     </header>
-    <img src="./images/hero-mobile.jpg" alt="Hero image" class="mobile-img">
+    <picture class="hero-img">
+      <source srcset="./images/hero-desktop.jpg" media="(min-width: 1024px)">
+      <img src="./images/hero-mobile.jpg" alt="Hero image">
+    </picture>
 
     <article>
       <h1>
@@ -38,14 +41,40 @@
         Add your email below to stay up-to-date with announcements and our launch deals.
       </p>
 
-      <form action="/">
-        <input placeholder="Email Address">
-        <button><img src="./images/icon-arrow.svg" ></button>
+      <form>
+        <input placeholder="Email Address" id="input-email">
+        <img src="./images/icon-error.svg" class="error-icon">
+        <button id="submit-btn"><img src="./images/icon-arrow.svg" ></button>
       </form>
+      <div role="alert" class="error-alert">
+        Please provide a valid email
+      </div>
     </article>
   </main>
-  <!-- <aside> -->
-    <img src="./images/hero-desktop.jpg" alt="Hero image" class="desktop-img">
-  <!-- </aside> -->
 </body>
 </html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+
+    const errorAlert = document.getElementsByClassName("error-alert")[0];
+    const errorIcon =  document.getElementsByClassName("error-icon")[0];
+
+    document.getElementById("submit-btn").addEventListener("click", (e) => {
+      const email = document.getElementById("input-email").value;
+
+      if (!regex.test(email)) {
+        errorAlert.style.display = "block"
+        errorIcon.style.display = "block"
+      } 
+
+      e.preventDefault();
+    });
+
+    document.getElementById("input-email").addEventListener("keydown", () => {
+      errorAlert.style.display = "none"
+      errorIcon.style.display = "none"
+    });
+  })
+</script>
